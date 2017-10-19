@@ -36,6 +36,7 @@ import android.os.Build;
 import android.Manifest;
 import android.support.v4.content.ContextCompat;
 
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
@@ -163,6 +164,17 @@ public class PListActivity extends AppCompatActivity implements View.OnClickList
             sp3.setSelection(spn2);
             ed0.setText(articlem.getGG());
             ed3.setText(articlem.getGJ());
+
+            if(articlem.getImg().indexOf("def.png") != -1)
+            {
+                imgbut1.setImageResource(R.drawable.def);
+            }
+            else {
+
+                File imgfile = new File(articlem.getImg());
+                Bitmap d = BitmapFactory.decodeFile(imgfile.getAbsolutePath());
+                imgbut1.setImageBitmap(d);
+            }
         }
 
 

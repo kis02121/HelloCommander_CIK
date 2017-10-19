@@ -116,20 +116,6 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
 
         refresh();
 
-        try {
-            if(article.getImg().indexOf("def.png") != -1)
-            {
-                imgv1.setImageResource(R.drawable.def);
-            }
-            else {
-
-                File imgfile = new File(article.getImg());
-                Bitmap d = BitmapFactory.decodeFile(imgfile.getAbsolutePath());
-                imgv1.setImageBitmap(d);
-            }
-        }catch (Exception e){
-            Log.e("imgerror","Error:" + e);
-        }
 
     }
     //예,아니오 다이얼로그 함수
@@ -223,7 +209,23 @@ public class AddActivity extends AppCompatActivity implements View.OnClickListen
         txtv8.setText(article.getJR());
         txtv7.setText("생일 : " + article.getBD());
         txtv9.setText("입대일 : " + article.getID());
-        txtv10.setText("전역일 : " + article.getOD());
+
+
+        try {
+            if(article.getImg().indexOf("def.png") != -1)
+            {
+                imgv1.setImageResource(R.drawable.def);
+            }
+            else {
+
+                File imgfile = new File(article.getImg());
+                Bitmap d = BitmapFactory.decodeFile(imgfile.getAbsolutePath());
+                imgv1.setImageBitmap(d);
+            }
+
+        }catch (Exception e){
+            Log.e("imgerror","Error:" + e);
+        }
 
         articlelist = daoa.getArticleList(article.getGG());
         CustomAdapter5 customAdapter5 = new CustomAdapter5(this, R.layout.calendarlayout, articlelist);
